@@ -16,7 +16,8 @@ N = round(nastawy(1));
 Nu = round(nastawy(2));
 lambda = nastawy(3);
 
-
+umin = -1;
+umax = 1;
 n = 500;
 n0 = 10;
 
@@ -41,9 +42,21 @@ for k=n0:n
     funregnpl();
     du(k:k+Nu-1) = K*(yz(k)*ones(N,1)-y(k+1:k+N));
     u(k) = u(k-1) + du(k);
+    u(k) = min(max(u(k),umin), umax);
 end
 y = y(1:n);
-plot(y)
-hold on
-plot(yz)
+% f=figure;
 E = norm(yz-y)^2;
+% subplot(2,1,1)
+% plot(u)
+% title("Regulator NPL")
+% legend(["Sterowanie"])
+% 
+% subplot(2,1,2)
+% plot(y)
+% hold on
+% plot(yz)
+% title("E= "+string(E))
+% legend(["Wyjscie obiektu", "Wartosc zadana"], "Location", "best")
+
+% exportgraphics(f, "NPL_N_30N_u_30lambda_1.pdf")

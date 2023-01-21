@@ -5,7 +5,6 @@ alpha_1 = -1.422574;
 alpha_2 = 0.466776;
 beta_1 = 0.017421;
 beta_2 = 0.013521;
-
 umin = -1;
 umax = 1;
 
@@ -38,7 +37,7 @@ for k=n0:n
     y(k)= g2(x1(k));
     e(k) = yz(k)-y(k);
     u(k) = r0*e(k) + r1*e(k-1) + r2*e(k-2) + u(k-1);
-    u(k) = min(max(u(k),umin), umax);
+    
 end
 f=figure;
 E = norm(yz-y)^2;
@@ -54,4 +53,4 @@ plot(yz)
 title("E= "+string(E))
 legend(["Wyjscie obiektu", "Wartosc zadana"], "Location", "best")
 
-exportgraphics(f, "PID2.pdf")
+exportgraphics(f, "PID_K_3.3_Ti_7_Td_1.68.pdf")
